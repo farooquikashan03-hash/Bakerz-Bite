@@ -1,0 +1,1609 @@
+/* ==========================================================
+   Bakerz Bite - simple CSS (same look, much easier to read)
+ 
+   TABLE OF CONTENTS (search for the number to jump there)
+    1. Colours and page basics
+    2. Layout helpers
+    3. Navigation bar
+    4. Buttons and cards
+    5. Hero (top of the page)
+    6. Products, gallery, offers
+    7. FAQ, forms, reviews
+    8. Basket, popup, big photo
+    9. Footer and ticker
+   10. Tablet and phone sizes
+ 
+   TIP: every rule exists ONCE. Change it here and that's it.
+   ========================================================== */
+ 
+ 
+/* ---------- 1. COLOURS AND PAGE BASICS ---------- */
+ 
+/* Change a colour here and the whole site updates */
+:root {
+    --cream: #FFF8EF;
+    --cream-dark: #FBF1E2;
+    --green: #2D4A3E;
+    --red: #C66B4E;
+    --red-dark: #AE5539;
+    --yellow: #E8B953;
+    --yellow-light: #F8E9C6;
+    --grey: #6F7A72;
+    --line: #EADFCE;
+    --white: #FFFFFF;
+}
+ 
+* {
+    box-sizing: border-box;
+}
+ 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px; /* headings don't hide under the sticky menu */
+}
+ 
+body {
+    margin: 0;
+    padding-bottom: 50px; /* space for the ticker at the bottom */
+    background: var(--cream);
+    color: var(--green);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+ 
+/* Added by JavaScript while the basket or popup is open */
+body.no-scroll {
+    overflow: hidden;
+}
+ 
+h1, h2, h3, h4 {
+    margin: 0 0 12px 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.2;
+}
+ 
+h1 { font-size: 44px; }
+h3 { font-size: 20px; }
+ 
+p {
+    margin: 0 0 14px 0;
+}
+ 
+img {
+    display: block;
+    max-width: 100%;
+    background: var(--cream-dark); /* shows while a photo loads */
+}
+ 
+a {
+    color: var(--red);
+}
+ 
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+ 
+section {
+    scroll-margin-top: 90px;
+}
+ 
+::selection {
+    background: var(--yellow);
+    color: var(--green);
+}
+ 
+/* Yellow outline when using the keyboard */
+:where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 3px;
+}
+ 
+/* Smooth colour changes on everything clickable */
+a, button, input, textarea, select {
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+ 
+ 
+/* ---------- 2. LAYOUT HELPERS ---------- */
+ 
+.container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+ 
+.section {
+    padding: 68px 0;
+}
+ 
+.section.soft {
+    background: linear-gradient(180deg, var(--cream-dark), #fff9f1);
+}
+ 
+/* Two columns side by side (they stack on tablets) */
+.two-cols {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+ 
+.two-cols > div {
+    flex: 1;
+    min-width: 0;
+}
+ 
+.two-cols.top-aligned {
+    align-items: flex-start;
+}
+ 
+/* Cards: 3 per row */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+ 
+.card-grid > * {
+    min-width: 0;
+}
+ 
+/* The "no results" message takes the full row */
+.card-grid > .empty {
+    grid-column: 1 / -1;
+}
+ 
+/* Gallery photos: 4 per row */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+ 
+/* Two small contact cards per row */
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+ 
+.info-grid .card {
+    width: calc(50% - 8px);
+}
+ 
+/* Four footer columns */
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 38px;
+}
+ 
+.footer-grid > div {
+    width: calc(25% - 29px);
+}
+ 
+.stats {
+    display: flex;
+    gap: 16px;
+}
+ 
+.stat {
+    flex: 1;
+}
+ 
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+ 
+.top-space {
+    margin-top: 24px;
+}
+ 
+ 
+/* ---------- 3. NAVIGATION BAR ---------- */
+ 
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 4px 18px rgba(45, 74, 62, 0.05);
+}
+ 
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 76px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+ 
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--green);
+    text-decoration: none;
+}
+ 
+.logo-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 5px 12px rgba(232, 185, 83, 0.25);
+    font-size: 22px;
+}
+ 
+.logo-text strong {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.2;
+}
+ 
+.logo-text small {
+    display: block;
+    color: var(--grey);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+ 
+/* The menu links fill the middle of the bar */
+.menu {
+    display: flex;
+    flex: 1;
+    gap: 4px;
+    margin-left: 16px;
+}
+ 
+.menu a {
+    padding: 8px 14px;
+    border-radius: 20px;
+    color: var(--green);
+    text-decoration: none;
+}
+ 
+.menu a:hover {
+    background: var(--yellow-light);
+}
+ 
+.menu a.active {
+    background: var(--green);
+    color: var(--white);
+}
+ 
+.counter {
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: var(--yellow-light);
+    color: var(--grey);
+    font-size: 13px;
+    white-space: nowrap;
+}
+ 
+.counter strong {
+    color: var(--green);
+}
+ 
+.basket-button {
+    padding: 8px 20px;
+    border: 2px solid var(--red);
+    border-radius: 30px;
+    background: var(--red);
+    box-shadow: 0 4px 10px rgba(45, 74, 62, 0.08);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+ 
+.basket-button:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-1px);
+}
+ 
+/* Hamburger button (only shown on tablets and phones) */
+.menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--green);
+    font-size: 22px;
+    cursor: pointer;
+}
+ 
+ 
+/* ---------- 4. BUTTONS AND CARDS ---------- */
+ 
+.button {
+    display: inline-block;
+    padding: 11px 24px;
+    border: 2px solid var(--red);
+    border-radius: 30px;
+    background: var(--red);
+    box-shadow: 0 4px 10px rgba(45, 74, 62, 0.08);
+    color: var(--white);
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+ 
+.button:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-1px);
+}
+ 
+/* White version of the button */
+.button.light {
+    background: var(--white);
+    border-color: var(--line);
+    color: var(--green);
+}
+ 
+.button.light:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+}
+ 
+.button.full {
+    width: 100%;
+}
+ 
+/* Small "Add" button on product cards */
+.small-button {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 20px;
+    background: var(--green);
+    box-shadow: 0 4px 10px rgba(45, 74, 62, 0.08);
+    color: var(--white);
+    font-size: 14px;
+    cursor: pointer;
+}
+ 
+.small-button:hover {
+    background: var(--red);
+    transform: translateY(-1px);
+}
+ 
+/* A button that looks like a text link */
+.link-button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--grey);
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+ 
+.link-button:hover {
+    color: var(--red);
+}
+ 
+/* Little + and - buttons in the basket */
+.round-button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--green);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+ 
+.round-button:hover {
+    background: var(--green);
+    color: var(--white);
+}
+ 
+.close-button {
+    border: none;
+    background: none;
+    color: var(--grey);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+ 
+.close-button:hover {
+    color: var(--red);
+}
+ 
+/* Cards (products, offers, contact boxes) */
+.card {
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(234, 223, 206, 0.8);
+    border-radius: 18px;
+    background: var(--white);
+    box-shadow: 0 8px 24px rgba(45, 74, 62, 0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+ 
+.card:hover,
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(45, 74, 62, 0.12);
+}
+ 
+.card-body {
+    padding: 20px;
+}
+ 
+.card-photo {
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+ 
+.card:hover .card-photo {
+    transform: scale(1.035);
+}
+ 
+/* Yellow label like "Bestseller" */
+.badge {
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: 8px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--yellow);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+/* Yellow message box (thank-you notes etc.) */
+.note {
+    padding: 14px 16px;
+    border-left: 5px solid var(--yellow);
+    border-radius: 12px;
+    background: var(--yellow-light);
+    font-size: 15px;
+}
+ 
+/* Hidden until JavaScript puts a message in it */
+.note:empty {
+    display: none;
+}
+ 
+ 
+/* ---------- 5. HERO (TOP OF THE PAGE) ---------- */
+ 
+.hero {
+    padding: 54px 0 42px;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 88% 8%, rgba(232, 185, 83, 0.25), transparent 34%),
+        linear-gradient(135deg, var(--yellow-light), var(--cream) 68%);
+}
+ 
+.hero .container {
+    max-width: 1180px;
+}
+ 
+/* Text on the left, photo on the right */
+.hero .two-cols {
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    align-items: start;
+    gap: clamp(28px, 4vw, 58px);
+}
+ 
+.hero h1 {
+    max-width: 620px;
+    margin: 8px 0 18px;
+    font-size: clamp(38px, 4.2vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    text-wrap: balance;
+}
+ 
+.small-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--red);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+ 
+.lead {
+    max-width: 540px;
+    margin-bottom: 25px;
+    color: var(--grey);
+    font-size: clamp(16px, 1.35vw, 18px);
+    line-height: 1.75;
+}
+ 
+.hero .button-row {
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+ 
+.hero .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 21px;
+    border-radius: 999px;
+}
+ 
+/* Three little number boxes */
+.hero .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 560px;
+}
+ 
+.hero .stat {
+    padding: 15px 14px;
+    border: 1px solid rgba(45, 74, 62, 0.1);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.64);
+}
+ 
+.stat strong {
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(22px, 2vw, 28px);
+    line-height: 1.15;
+}
+ 
+.stat span {
+    display: block;
+    color: var(--grey);
+    font-size: 12px;
+    line-height: 1.45;
+}
+ 
+/* Big photo (also used outside the hero) */
+.big-photo {
+    width: 100%;
+    height: 380px;
+    border-radius: 20px;
+    box-shadow: 0 18px 42px rgba(45, 74, 62, 0.16);
+    object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+ 
+.big-photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(45, 74, 62, 0.2);
+}
+ 
+.hero .big-photo {
+    height: clamp(350px, 38vw, 500px);
+    border: 5px solid rgba(255, 255, 255, 0.78);
+    border-radius: 26px;
+}
+ 
+/* Five category pictures under the hero */
+.banner-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    margin-top: 34px;
+}
+ 
+.banner-tile {
+    position: relative;
+    display: block;
+    height: 145px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--line);
+    box-shadow: 0 5px 16px rgba(45, 74, 62, 0.08);
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+ 
+.banner-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s;
+}
+ 
+/* The name label at the bottom of each picture */
+.banner-tile span {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 9px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 10px;
+    background: rgba(35, 60, 49, 0.88);
+    color: #fffdf8;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: capitalize;
+    transition: background-color 0.25s;
+}
+ 
+.banner-tile:hover,
+.banner-tile:focus-visible {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(45, 74, 62, 0.18);
+}
+ 
+.banner-tile:hover img {
+    transform: scale(1.09);
+}
+ 
+.banner-tile:hover span {
+    background: rgba(198, 105, 76, 0.96);
+}
+ 
+ 
+/* ---------- 6. PRODUCTS, GALLERY, OFFERS ---------- */
+ 
+.title {
+    margin-bottom: 16px;
+    font-size: 34px;
+    letter-spacing: -0.4px;
+}
+ 
+.small-title {
+    font-size: 24px;
+}
+ 
+.quiet {
+    color: var(--grey);
+}
+ 
+/* Product cards */
+.product-category {
+    color: var(--red);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+ 
+.product-name {
+    margin: 4px 0 6px 0;
+    font-size: 21px;
+    line-height: 1.3;
+}
+ 
+.product-text {
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.7;
+}
+ 
+.product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto; /* pushes the price to the bottom so cards line up */
+    padding-top: 10px;
+}
+ 
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+}
+ 
+/* Makes every product card in a row the same height */
+#product-grid .card {
+    display: flex;
+    flex-direction: column;
+}
+ 
+#product-grid .card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+ 
+/* Search bar and category buttons */
+.filter-bar {
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--white);
+    box-shadow: 0 6px 18px rgba(45, 74, 62, 0.08);
+}
+ 
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+ 
+.search-input,
+.sort-input {
+    flex: 1;
+    min-width: 160px;
+    max-width: 100%;
+}
+ 
+.filter {
+    padding: 9px 17px;
+    border: 2px solid var(--line);
+    border-radius: 30px;
+    background: var(--white);
+    color: var(--green);
+    font-size: 15px;
+    cursor: pointer;
+}
+ 
+.filter:hover {
+    border-color: var(--yellow);
+}
+ 
+.filter.active {
+    background: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 4px 10px rgba(45, 74, 62, 0.16);
+    color: var(--white);
+}
+ 
+.result-count {
+    margin: 14px 0 0 0;
+    color: var(--grey);
+    font-size: 15px;
+}
+ 
+.empty {
+    padding: 40px 20px;
+    border-radius: 18px;
+    background: var(--white);
+    color: var(--grey);
+    text-align: center;
+}
+ 
+/* Gallery */
+.gallery-item {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--cream-dark);
+    box-shadow: 0 6px 18px rgba(45, 74, 62, 0.08);
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+ 
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+ 
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+ 
+/* Offers */
+.offer-tag {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--yellow-light);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.offer-big {
+    margin: 0 0 6px 0;
+    color: var(--red);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+}
+ 
+.offer-terms {
+    margin: 14px 0 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    color: var(--grey);
+    font-size: 14px;
+}
+ 
+/* Lists with a tick in front */
+.tick-list {
+    margin: 0 0 14px 0;
+    padding: 0;
+    list-style: none;
+}
+ 
+.tick-list li {
+    position: relative;
+    margin-bottom: 8px;
+    padding-left: 26px;
+    color: var(--grey);
+}
+ 
+.tick-list li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+}
+ 
+.contact-details p {
+    margin-bottom: 6px;
+}
+ 
+ 
+/* ---------- 7. FAQ, FORMS, REVIEWS ---------- */
+ 
+/* FAQ boxes */
+.faq-item {
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(234, 223, 206, 0.85);
+    border-radius: 14px;
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(45, 74, 62, 0.06);
+}
+ 
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    list-style: none; /* hides the browser's default arrow */
+    cursor: pointer;
+}
+ 
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+ 
+/* Our own + and - sign */
+.faq-item summary::after {
+    content: "+";
+    color: var(--red);
+    font-size: 24px;
+}
+ 
+.faq-item[open] summary::after {
+    content: "–";
+}
+ 
+.faq-item[open] summary {
+    background: var(--cream-dark);
+}
+ 
+.faq-item summary:hover {
+    color: var(--red);
+}
+ 
+.faq-item p {
+    margin: 0;
+    padding: 16px 20px;
+    color: var(--grey);
+}
+ 
+/* Forms */
+.form-row {
+    margin-bottom: 16px;
+}
+ 
+.form-row label,
+.footer label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: bold;
+}
+ 
+.field {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--green);
+    font-family: inherit;
+    font-size: 16px;
+}
+ 
+.field:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 4px rgba(198, 107, 78, 0.12);
+    outline: none;
+}
+ 
+textarea.field {
+    resize: vertical;
+}
+ 
+/* Opening hours */
+.hours-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+ 
+.hours-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+}
+ 
+.hours-table tr:last-child td {
+    border-bottom: none;
+}
+ 
+.hours-table td:first-child {
+    font-weight: bold;
+}
+ 
+.hours-table td:last-child {
+    color: var(--grey);
+    text-align: right;
+}
+ 
+/* Star rating */
+.stars {
+    font-size: 34px;
+    line-height: 1;
+}
+ 
+.star {
+    padding: 0 2px;
+    border: none;
+    background: none;
+    color: var(--line);
+    font-size: 34px;
+    cursor: pointer;
+}
+ 
+.star.active {
+    color: var(--yellow);
+}
+ 
+/* Customer feedback */
+.feedback-item {
+    margin-bottom: 10px;
+    padding: 14px 16px;
+    border: 1px solid rgba(234, 223, 206, 0.85);
+    border-radius: 14px;
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(45, 74, 62, 0.06);
+}
+ 
+.feedback-stars {
+    color: var(--yellow);
+    font-size: 16px;
+}
+ 
+.feedback-name {
+    font-weight: bold;
+}
+ 
+.feedback-text {
+    margin-top: 4px;
+    color: var(--grey);
+    font-size: 15px;
+    overflow-wrap: break-word; /* long words can't break the layout */
+}
+ 
+.info-grid .card {
+    height: auto;
+}
+ 
+ 
+/* ---------- 8. BASKET, POPUP, BIG PHOTO ---------- */
+ 
+/* Dark background behind the basket and popup */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(45, 74, 62, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 2000;
+}
+ 
+#overlay.show {
+    display: block;
+}
+ 
+/* Basket panel (hidden off-screen until opened) */
+#basket-panel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    bottom: 0;
+    width: 340px;
+    max-width: 90%;
+    padding: 20px;
+    overflow: auto;
+    background: var(--white);
+    box-shadow: 0 20px 60px rgba(25, 39, 31, 0.22);
+    z-index: 2020;
+    transition: right 0.3s;
+}
+ 
+#basket-panel.open {
+    right: 0;
+}
+ 
+.basket-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+.basket-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+ 
+.basket-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+ 
+.basket-item-text {
+    flex: 1;
+}
+ 
+.basket-item-text strong {
+    display: block;
+    font-size: 15px;
+}
+ 
+.basket-item-text span {
+    color: var(--grey);
+    font-size: 13px;
+}
+ 
+.basket-item-text .item-price {
+    display: block;
+    margin-bottom: 6px;
+}
+ 
+.basket-item-text .quantity {
+    display: inline-block;
+    padding: 0 8px;
+    color: var(--green);
+    font-size: 15px;
+}
+ 
+.remove-button {
+    margin-left: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--grey);
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+ 
+.remove-button:hover {
+    color: var(--red);
+}
+ 
+.basket-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px solid var(--line);
+    font-size: 18px;
+}
+ 
+/* Product popup (centred on screen) */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 760px;
+    max-height: 90%;
+    overflow: auto;
+    border-radius: 20px;
+    background: var(--white);
+    box-shadow: 0 20px 60px rgba(25, 39, 31, 0.22);
+    transform: translate(-50%, -50%);
+    z-index: 2010;
+}
+ 
+#popup.open {
+    display: block;
+}
+ 
+#popup-photo {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+ 
+#popup .card-body {
+    padding: 24px;
+}
+ 
+.popup-specs {
+    margin: 14px 0;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--cream-dark);
+}
+ 
+.popup-specs h4 {
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+ 
+.popup-specs p {
+    margin: 0;
+    color: var(--grey);
+    font-size: 15px;
+}
+ 
+#popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--green);
+    font-size: 16px;
+}
+ 
+/* Gallery photo shown big */
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 74, 62, 0.9);
+    z-index: 2030;
+}
+ 
+#lightbox.open {
+    display: flex;
+}
+ 
+#lightbox-img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 16px;
+}
+ 
+#lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--green);
+    font-size: 18px;
+}
+ 
+/* Small note in the corner, like "Croissant added" */
+#message {
+    display: none;
+    position: fixed;
+    right: 16px;
+    bottom: 62px;
+    max-width: calc(100% - 32px);
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    background: var(--green);
+    box-shadow: 0 8px 20px rgba(45, 74, 62, 0.25);
+    color: var(--white);
+    font-size: 15px;
+    z-index: 2040;
+}
+ 
+#message.show {
+    display: block;
+}
+ 
+ 
+/* ---------- 9. FOOTER AND TICKER ---------- */
+ 
+.footer {
+    padding: 40px 0 20px 0;
+    background: linear-gradient(135deg, #263f34, var(--green));
+    color: #E5DED0;
+}
+ 
+.footer h3 {
+    margin-bottom: 16px;
+    color: var(--white);
+    font-size: 18px;
+}
+ 
+.footer a {
+    color: #E5DED0;
+    text-decoration: none;
+}
+ 
+.footer a:hover {
+    color: var(--yellow);
+}
+ 
+.footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ 
+.footer li {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+ 
+.footer .note {
+    margin: 14px 0 0 0;
+    color: var(--green);
+}
+ 
+.footer .button {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--green);
+}
+ 
+.footer .button:hover {
+    background: var(--white);
+    border-color: var(--white);
+}
+ 
+.copyright {
+    margin: 24px 0 0 0;
+    padding-top: 16px;
+    border-top: 1px solid #456655;
+    font-size: 14px;
+}
+ 
+/* Scrolling bar stuck to the bottom of the screen */
+.ticker {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 46px;
+    overflow: hidden;
+    border-top: 3px solid var(--yellow);
+    background: var(--green);
+    box-shadow: 0 -4px 16px rgba(45, 74, 62, 0.12);
+    color: var(--white);
+    font-size: 15px;
+    line-height: 46px;
+    z-index: 1010;
+}
+ 
+.ticker-line {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 45s linear infinite;
+}
+ 
+.ticker-group {
+    display: inline-flex;
+    gap: 40px;
+    padding-right: 40px;
+}
+ 
+/* main.js copies the text once, so sliding left by half makes a seamless loop */
+@keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+ 
+/* For people who turned animations off on their device */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+ 
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+ 
+    .ticker-line {
+        animation: none;
+    }
+}
+ 
+ 
+/* ---------- 10. TABLET AND PHONE SIZES ---------- */
+ 
+/* Tablets and smaller: hamburger menu */
+@media (max-width: 991px) {
+    .brand {
+        margin-right: auto;
+    }
+ 
+    .menu-toggle {
+        display: block;
+    }
+ 
+    /* Menu drops down under the bar when opened */
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 10px 16px;
+        flex-direction: column;
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+    }
+ 
+    .menu.open {
+        display: flex;
+    }
+}
+ 
+/* Tablets: columns stack, 2 cards per row */
+@media (max-width: 900px) {
+    h1 {
+        font-size: 36px;
+    }
+ 
+    .section {
+        padding: 54px 0;
+    }
+ 
+    .two-cols {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 28px;
+    }
+ 
+    .two-cols > div {
+        flex: none;
+    }
+ 
+    /* Hero keeps text and photo side by side on tablets */
+    .hero .two-cols {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        gap: 26px;
+    }
+ 
+    .hero .big-photo {
+        height: 390px;
+    }
+ 
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+ 
+    .card-photo {
+        height: 220px;
+    }
+ 
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+ 
+    .banner-strip {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+ 
+    .banner-tile {
+        height: 135px;
+    }
+ 
+    .footer-grid > div {
+        width: calc(50% - 19px);
+    }
+}
+ 
+/* Phones: everything in one column */
+@media (max-width: 680px) {
+    /* Hero stacks: text first, photo below */
+    .hero {
+        padding: 34px 0 28px;
+    }
+ 
+    .hero .two-cols {
+        grid-template-columns: 1fr;
+    }
+ 
+    .hero .big-photo {
+        height: clamp(240px, 68vw, 360px);
+        border-width: 4px;
+        border-radius: 21px;
+    }
+}
+ 
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+ 
+    h1,
+    .hero h1 {
+        font-size: clamp(32px, 9vw, 40px);
+        letter-spacing: -0.7px;
+    }
+ 
+    .title {
+        font-size: 28px;
+    }
+ 
+    .section {
+        padding: 42px 0;
+    }
+ 
+    .lead {
+        font-size: 16px;
+    }
+ 
+    .hero .stats {
+        gap: 8px;
+    }
+ 
+    .hero .stat {
+        padding: 12px 9px;
+        border-radius: 12px;
+    }
+ 
+    .stat strong {
+        font-size: 22px;
+    }
+ 
+    .stat span {
+        font-size: 11px;
+    }
+ 
+    .big-photo {
+        height: 260px;
+    }
+ 
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+ 
+    .card-photo {
+        height: 230px;
+    }
+ 
+    .card-body {
+        padding: 17px;
+    }
+ 
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+ 
+    .banner-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+ 
+    .banner-tile {
+        height: 125px;
+    }
+ 
+    .info-grid .card {
+        width: 100%;
+    }
+ 
+    .footer-grid > div {
+        width: 100%;
+    }
+ 
+    .filter-bar {
+        padding: 14px;
+    }
+ 
+    /* Keep the top bar from getting crowded */
+    .counter,
+    .logo-text small,
+    .basket-word {
+        display: none;
+    }
+ 
+    .basket-button {
+        padding: 8px 14px;
+    }
+ 
+    #popup-photo {
+        height: 200px;
+    }
+}
+ 
+/* Very small phones: stat boxes go one per row */
+@media (max-width: 380px) {
+    .hero .stats {
+        grid-template-columns: 1fr;
+    }
+ 
+    .hero .stat {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+ 
+    .hero .stat strong {
+        min-width: 48px;
+        margin: 0;
+    }
+ 
+    .hero .button-row .button {
+        width: 100%;
+    }
+}
+
+ 

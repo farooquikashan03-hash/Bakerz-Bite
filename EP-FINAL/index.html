@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bakerz Bite — fresh bread, cakes and pastries</title>
+  <meta name="description" content="Bakerz Bite is a small neighbourhood bakery. Bread, cakes, pastries, cookies, pies and merchandise, baked fresh every morning on Maple Street.">
+
+  <!-- Fonts (if they don't load, the site falls back to Georgia and Arial) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== Top navigation (becomes a hamburger menu on phones) ===== -->
+<header class="navbar" id="top">
+  <div class="container navbar-inner">
+    <a class="brand" href="#top">
+      <span class="logo-mark">
+        <img src="images (2).jfif" alt="">
+      </span>
+      <span class="logo-text">
+        <strong>Bakerz Bite</strong>
+        <small>Artisan Bakery</small>
+      </span>
+    </a>
+
+    <nav class="menu" id="menu">
+      <a class="active" href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#offers">Offers</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <span class="counter">Visits: <strong id="visitor-count">1</strong></span>
+
+    <button class="basket-button" id="basket-button"><span class="basket-word">Basket </span>(<span id="basket-count">0</span>)</button>
+
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+
+  </div>
+</header>
+
+
+<!-- ===== Hero: the big welcome at the top ===== -->
+<section class="section hero" id="home">
+  <div class="container">
+    <div class="two-cols">
+
+      <div>
+        <span class="small-label">Baked on Maple Street since 2013</span>
+        <h1>Warm bread, real butter, and a little bit of magic.</h1>
+        <p class="lead">
+          Bakerz Bite is a small neighbourhood bakery. Every loaf, cake and pastry is
+          mixed, proved and baked in our own kitchen each morning — no shortcuts,
+          nothing from the freezer.
+        </p>
+        <p class="button-row">
+          <a class="button" href="#products">See our bakes</a>
+          <a class="button light" href="#offers">This month's offers</a>
+        </p>
+
+        <div class="stats">
+          <p class="stat"><strong>4am</strong><span>Ovens on, every day</span></p>
+          <p class="stat"><strong>13</strong><span>Years on Maple Street</span></p>
+          <p class="stat"><strong>4.9★</strong><span>From 380 local reviews</span></p>
+        </div>
+      </div>
+
+      <div>
+        <img class="big-photo"
+             src="https://media.base44.com/images/public/6ac406cdbd4f5ed78c91aaf8/e888f41fa_generated_685effd4.png"
+             alt="Warm bakery display with flaky croissants, sourdough loaves and a layered cake">
+      </div>
+
+    </div>
+
+    <!-- One small picture per category (filled in by main.js) -->
+    <div class="banner-strip" id="banner-strip"></div>
+  </div>
+</section>
+
+
+<!-- ===== Products (the cards get added by js/main.js) ===== -->
+<section class="section soft" id="products">
+  <div class="container">
+    <span class="small-label">Our bakes</span>
+    <h2 class="title">The display case</h2>
+    <p class="lead">
+      Eleven bakes and six bits of Bakerz Bite kit. Pick a category, search for
+      something in particular, or sort by price. Press Details to see a product up
+      close, with its full ingredient list.
+    </p>
+
+    <div class="filter-bar">
+      <div class="filter-row">
+        <div class="filter-buttons" id="filter-buttons"></div>
+        <input class="field search-input" type="text" id="search-box"
+               placeholder="Search bakes…">
+        <select class="field sort-input" id="sort-box">
+          <option value="default">Sort: our order</option>
+          <option value="price-low">Price: low to high</option>
+          <option value="price-high">Price: high to low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+      <p class="result-count" id="result-count"></p>
+    </div>
+
+    <div class="card-grid" id="product-grid"></div>
+    <noscript><p class="empty">The products need JavaScript to show up. Please turn it on and refresh.</p></noscript>
+  </div>
+</section>
+
+
+<!-- ===== Gallery (photos get added by js/main.js) ===== -->
+<section class="section" id="gallery">
+  <div class="container">
+    <span class="small-label">Gallery</span>
+    <h2 class="title">A look around the bakery</h2>
+    <p class="lead">Tap any photo to see it up close.</p>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</section>
+
+
+<!-- ===== Offers ===== -->
+<section class="section soft" id="offers">
+  <div class="container">
+    <span class="small-label">This month</span>
+    <h2 class="title">Offers worth the walk</h2>
+    <p class="lead">Five things running at the moment, with the conditions written plainly beside each one.</p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-body">
+          <span class="offer-tag">Every morning</span>
+          <p class="offer-big">$6</p>
+          <h3>Croissant &amp; coffee</h3>
+          <p class="product-text">Any butter croissant with a small filter coffee, before 10am.</p>
+          <p class="offer-terms"><strong>Conditions:</strong> Monday to Friday, 7–10am. Eat in or take away. No voucher needed.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <span class="offer-tag">Bundle</span>
+          <p class="offer-big">13 for 12</p>
+          <h3>The baker's dozen</h3>
+          <p class="product-text">Pick any thirteen cookies and pay for twelve.</p>
+          <p class="offer-terms"><strong>Conditions:</strong> In store only. Subject to the display case lasting. Not available on pre-orders.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <span class="offer-tag">Seasonal</span>
+          <p class="offer-big">$26</p>
+          <h3>Pie &amp; cider night</h3>
+          <p class="product-text">Any whole pie with two bottles of local apple cider.</p>
+          <p class="offer-terms"><strong>Conditions:</strong> Fridays and Saturdays from 5pm. Pre-order by 2pm. Cider is for over-18s only.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <span class="offer-tag">New customers</span>
+          <p class="offer-big">15% off</p>
+          <h3>Your first basket</h3>
+          <p class="product-text">Join the Crumb Club and get 15% off your first order.</p>
+          <p class="offer-terms"><strong>Conditions:</strong> One per household. Cannot be combined with other offers.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <span class="offer-tag">Wednesdays</span>
+          <p class="offer-big">Half price</p>
+          <h3>Sourdough Wednesday</h3>
+          <p class="product-text">Every second country sourdough loaf is half price.</p>
+          <p class="offer-terms"><strong>Conditions:</strong> Wednesdays only, from 8am until the loaves run out. No reservations.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <span class="offer-tag">Good to know</span>
+          <h3>How our offers work</h3>
+          <ul class="tick-list">
+            <li>Offers change with the seasons — usually every six to eight weeks.</li>
+            <li>One offer per basket unless the conditions say otherwise.</li>
+            <li>Nothing is charged on the website. Offers are applied in store.</li>
+            <li>Everything is baked to sell out, so an offer may end early.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== About us ===== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="two-cols">
+
+      <div>
+        <img class="big-photo"
+             src="https://media.base44.com/images/public/6ac406cdbd4f5ed78c91aaf8/8aacc6500_generated_1794451d.png"
+             alt="A baker's flour-dusted hands shaping a round of bread dough on a marble counter">
+      </div>
+
+      <div>
+        <span class="small-label">About us</span>
+        <h2 class="title">Thirteen years of getting up at four</h2>
+        <p class="quiet">
+          Bakerz Bite started with one second-hand oven and a stubborn belief that bread
+          should taste of something. We still mix every dough by hand, still use real
+          butter, and still bake everything on the day you buy it.
+        </p>
+
+        <ul class="tick-list">
+          <li>Slow-proved dough, never rushed with additives</li>
+          <li>Butter, cream and eggs from farms we know by name</li>
+          <li>Whatever is unsold at closing goes to the local shelter</li>
+        </ul>
+
+        <div class="contact-details top-space">
+          <p><p class="fa-solid fa-envelope"></p><strong> Email:</strong> hello@bakerzbite.example</p>
+          <p><p class="fa-solid fa-phone"></p><strong> Phone:</strong> (555) 012-3456</p>
+          <p><p class="fa-solid fa-location-dot"></p><strong> Address:</strong> 14 Maple Street, Riverside Quarter, Yourtown 12345</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== FAQ (click a question to open it, no JavaScript needed) ===== -->
+<section class="section soft" id="faq">
+  <div class="container">
+    <span class="small-label">FAQ</span>
+    <h2 class="title">Questions we hear a lot</h2>
+    <p class="lead">Tap a question to read the answer.</p>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>Do you take custom cake orders?</summary>
+        <p>Yes! Celebration cakes are made to order with 48 hours' notice. Pop into the shop or use the contact form below to tell us the date, the number of people and any flavours to avoid.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you deliver?</summary>
+        <p>Free local delivery on orders over $40, within a 5km radius. Larger orders can be arranged by phone. Everything else is pick-up from the shop on Maple Street.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are your products suitable for vegans?</summary>
+        <p>We bake a daily vegan sourdough and a vegan oat cookie. Most of our cakes and pastries use butter and free-range eggs. Ask at the counter and we will tell you exactly what is in each bake.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I freeze your bread?</summary>
+        <p>Yes — sourdough freezes beautifully. Slice it first, then toast straight from frozen. Pastries and cakes are best eaten fresh, within two days of buying.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer baking classes?</summary>
+        <p>Yes, on the first Saturday of every month. A small group, three hours, and you take home everything you bake. Book through the contact form or at the counter.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What time do you open?</summary>
+        <p>Monday to Friday 7am–6pm, Saturday 7:30am–5pm, Sunday 8am–2pm. The oven goes on at 4am, so mornings are always the best time for the freshest bakes.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Contact: details, form and opening hours ===== -->
+<section class="section" id="contact">
+  <div class="container">
+    <span class="small-label">Contact us</span>
+    <h2 class="title">Come in, phone us, or send a note</h2>
+    <p class="lead">Celebration cakes, big orders and baking classes are all arranged by hand.</p>
+
+    <div class="two-cols top-aligned">
+
+      <div>
+        <div class="info-grid">
+          <div class="card"><div class="card-body">
+            <h3 class=""><p class="fa-solid fa-location-dot"></p>Where we are</h3>
+            <p class="product-text">14 Maple Street<br>Riverside Quarter<br>Yourtown 12345</p>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <h3 class=""><p class="fa-solid fa-envelope"></p> Email</h3>
+            <p class="product-text"><a href="mailto:hello@bakerzbite.example">hello@bakerzbite.example</a><br>We reply within one working day.</p>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <h3><p class="fa-solid fa-phone"></p> Phone</h3>
+            <p class="product-text"><a href="tel:+15550123456">(555) 012-3456</a><br>8am to 4pm daily.</p>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <h3><p class="fa-solid fa-clock"></p> Opening hours</h3>
+            <p class="product-text">Mon–Fri 7am–6pm<br>Sat 7:30am–5pm<br>Sun 8am–2pm</p>
+          </div></div>
+        </div>
+
+        <div class="card top-space"><div class="card-body">
+          <form id="contact-form">
+            <div class="form-row">
+              <label for="contact-name">Your name</label>
+              <input class="field" type="text" id="contact-name" placeholder="Jamie Baker" required>
+            </div>
+            <div class="form-row">
+              <label for="contact-email">Email address</label>
+              <input class="field" type="email" id="contact-email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-row">
+              <label for="contact-subject">What is it about?</label>
+              <select class="field" id="contact-subject">
+                <option>A celebration cake</option>
+                <option>A large order or catering</option>
+                <option>Our baking classes</option>
+                <option>An ingredient question</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="contact-message">Your message</label>
+              <textarea class="field" id="contact-message" rows="4"
+                        placeholder="Tell us the date, the number of people and anything we should avoid…"
+                        required></textarea>
+            </div>
+            <button class="button" type="submit">Send message</button>
+          </form>
+          <p class="note top-space" id="contact-message-box"></p>
+        </div></div>
+      </div>
+
+      <div>
+        <span class="small-label">Plan your visit</span>
+        <h3 class="title small-title">Opening hours</h3>
+        <p class="quiet">The oven goes on at 4am and the door opens at 7. Mornings are always safest.</p>
+        <div class="card"><div class="card-body">
+          <table class="hours-table">
+            <tr><td>Monday</td><td>7:00am – 6:00pm</td></tr>
+            <tr><td>Tuesday</td><td>7:00am – 6:00pm</td></tr>
+            <tr><td>Wednesday</td><td>7:00am – 6:00pm</td></tr>
+            <tr><td>Thursday</td><td>7:00am – 6:00pm</td></tr>
+            <tr><td>Friday</td><td>7:00am – 6:00pm</td></tr>
+            <tr><td>Saturday</td><td>7:30am – 5:00pm</td></tr>
+            <tr><td>Sunday</td><td>8:00am – 2:00pm</td></tr>
+          </table>
+        </div></div>
+        <p class="quiet top-space">Closed on public holidays. Celebration cakes need 48 hours' notice.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Feedback: star rating + saved reviews ===== -->
+<section class="section soft" id="feedback">
+  <div class="container">
+    <span class="small-label">Feedback</span>
+    <h2 class="title">Rate your visit</h2>
+    <p class="lead">Tell us how we did. Your rating and feedback are saved in your browser (demo only).</p>
+
+    <div class="two-cols top-aligned">
+
+      <div class="card"><div class="card-body">
+        <h3>Leave a rating</h3>
+        <div class="stars" id="rating-stars">
+          <button type="button" class="star" data-value="1">★</button>
+          <button type="button" class="star" data-value="2">★</button>
+          <button type="button" class="star" data-value="3">★</button>
+          <button type="button" class="star" data-value="4">★</button>
+          <button type="button" class="star" data-value="5">★</button>
+        </div>
+
+        <form id="feedback-form" class="top-space">
+          <div class="form-row">
+            <label for="feedback-name">Your name</label>
+            <input class="field" type="text" id="feedback-name" placeholder="Your name" required>
+          </div>
+          <div class="form-row">
+            <label for="feedback-message">Your feedback</label>
+            <textarea class="field" id="feedback-message" rows="4" placeholder="Tell us what you think..." required></textarea>
+          </div>
+          <button class="button" type="submit">Submit feedback</button>
+        </form>
+        <p class="note top-space" id="feedback-message-box"></p>
+      </div></div>
+
+      <div>
+        <h3>Recent feedback</h3>
+        <div id="feedback-list"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Footer ===== -->
+<footer class="footer" id="sitemap">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <h3>Bakerz Bite</h3>
+        <p>Small-batch bread, cakes and pastries, baked fresh every morning on Maple Street.</p>
+      </div>
+
+      <div>
+        <h3>Sitemap</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#offers">Offers</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact us</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Visit us</h3>
+        <ul>
+          <li>14 Maple Street,<br>Riverside Quarter,<br>Yourtown 12345</li>
+          <li><a href="mailto:hello@bakerzbite.example">hello@bakerzbite.example</a></li>
+          <li><a href="tel:+15550123456">(555) 012-3456</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Join the Crumb Club</h3>
+        <form id="newsletter-form">
+          <label for="newsletter-email">Your email</label>
+          <input class="field" type="email" id="newsletter-email" placeholder="you@example.com" required>
+          <p class="top-space"><button class="button full" type="submit">Join the list</button></p>
+          <p class="note" id="newsletter-message"></p>
+        </form>
+      </div>
+
+    </div>
+    <p class="copyright">© <span id="current-year">2026</span> Bakerz Bite — a demonstration website.</p>
+  </div>
+</footer>
+
+
+<!-- ===== Scrolling bar stuck to the bottom of the screen ===== -->
+<div class="ticker">
+  <div class="ticker-line" id="ticker-line">
+    <div class="ticker-group">
+      <span> <span class="ticker-date">today</span></span>
+      <span> <span class="ticker-time">--:--:--</span></span>
+      <span> <span class="ticker-place">your area</span></span>
+      <span> Fresh croissants out of the oven at 7am</span>
+      <span> Celebration cakes made to order — 48 hours' notice</span>
+      <span> Free local delivery on orders over $40</span>
+      <span> Warm sourdough ready at 8am, Tuesday to Sunday</span>
+      <span> Ask about our monthly bread-making class</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== Basket (slides in from the right) ===== -->
+<div id="basket-panel">
+  <div class="basket-top">
+    <h3>Your basket</h3>
+    <button class="close-button" id="basket-close">✕</button>
+  </div>
+  <div id="basket-items"></div>
+  <p class="basket-total"><span>Subtotal</span><strong id="basket-total">$0.00</strong></p>
+  <p class="note" id="basket-message">This basket is saved in your own browser. No payment is taken.</p>
+  <p class="top-space"><button class="button full" id="checkout-button">Checkout (demo only)</button></p>
+  <p><button class="button light full" id="empty-basket">Empty basket</button></p>
+</div>
+
+
+<!-- ===== Dark background behind the basket and popup ===== -->
+<div id="overlay"></div>
+
+<!-- ===== Product popup ===== -->
+<div id="popup">
+  <button class="close-button" id="popup-close">✕</button>
+  <img id="popup-photo" alt="">
+  <div class="card-body">
+    <div class="product-category" id="popup-category"></div>
+    <h2 id="popup-name"></h2>
+    <p class="quiet" id="popup-text"></p>
+    <div class="popup-specs">
+      <h4>Ingredients / Specifications</h4>
+      <p id="popup-ingredients"></p>
+    </div>
+    <p class="product-price" id="popup-price"></p>
+    <button class="button" id="popup-add">Add to basket</button>
+    <button class="button light" id="popup-keep-browsing">Keep browsing</button>
+  </div>
+</div>
+
+<!-- ===== Gallery photo, shown big ===== -->
+<div id="lightbox">
+  <button class="close-button" id="lightbox-close">✕</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<!-- Little note that pops up in the corner, like "Croissant added" -->
+<div id="message"></div>
+
+
+<!-- products.js has to come first, main.js uses its list -->
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
