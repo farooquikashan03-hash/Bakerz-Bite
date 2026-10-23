@@ -1,21 +1,12 @@
-/* ==========================================================
-   products.js — everything we sell lives in this one list
-   ----------------------------------------------------------
+/* 
+   products.js - everything we sell lives in this one list
    For food, "ingredients" lists what's inside. For merchandise
    it holds the specs (size, material, etc).
-
-   To add a product: copy one whole { ... } block, paste it after
-   the last one (don't forget the comma between blocks) and give
-   it a new id that nobody else is using.
-
-   Tip: the pictures are loaded from the web right now. To use your
-   own, put them in an "images" folder and change the links to
-   something like  image: "images/croissant.jpg"
-   ========================================================== */
+*/
 
 const products = [
 
-  /* ----- CAKES ----- */
+  /* CAKES */
   {
     id: 1,
     name: "Chocolate Fudge Cake",
@@ -47,7 +38,7 @@ const products = [
     badge: ""
   },
 
-  /* ----- PASTRIES ----- */
+  /* PASTRIES */
   {
     id: 4,
     name: "Butter Croissant",
@@ -79,7 +70,7 @@ const products = [
     badge: ""
   },
 
-  /* ----- COOKIES ----- */
+  /* COOKIES */
   {
     id: 7,
     name: "Chocolate Chip Cookie",
@@ -111,7 +102,7 @@ const products = [
     badge: ""
   },
 
-  /* ----- PIES ----- */
+  /* PIES */
   {
     id: 10,
     name: "Classic Apple Pie",
@@ -133,7 +124,7 @@ const products = [
     badge: ""
   },
 
-  /* ----- MERCHANDISE (branded mugs, bags, glasses and so on) ----- */
+  /* MERCHANDISE (branded mugs, bags, glasses and so on) */
   {
     id: 12,
     name: "Bakerz Bite Mug",
