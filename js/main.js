@@ -1,24 +1,10 @@
-/* ==========================================================
+/*
    main.js - everything the page does, in plain JavaScript.
-   products.js must load before this file (it has the product list).
-
-   Sections:
-    1. Small helper functions
-    2. Visitor counter
-    3. Ticker at the bottom
-    4. Category pictures under the hero
-    5. Products (cards, filter, search, sort)
-    6. Gallery and big photo
-    7. Basket
-    8. Product popup
-    9. Star rating and feedback
-   10. Contact and newsletter forms
-   11. Menu (mobile toggle and highlight)
-   12. Footer year
-   ========================================================== */
+   products.js must load before this file
+*/
 
 
-/* ---------- 1. SMALL HELPER FUNCTIONS ---------- */
+/* 1. SMALL HELPER FUNCTIONS */
 
 // Shortcut so we don't type document.getElementById all the time
 function byId(id) {
@@ -84,14 +70,14 @@ function showMessage(text) {
 }
 
 
-/* ---------- 2. VISITOR COUNTER ---------- */
+/* 2. VISITOR COUNTER */
 
 const visits = Number(loadSaved("bakerzVisits", 0)) + 1;
 saveData("bakerzVisits", visits);
 byId("visitor-count").textContent = visits;
 
 
-/* ---------- 3. TICKER AT THE BOTTOM ---------- */
+/* 3. TICKER AT THE BOTTOM */
 
 // Updates the date and time in the ticker
 function updateClock() {
@@ -129,7 +115,7 @@ updateClock();
 setInterval(updateClock, 1000);
 
 
-/* ---------- 4. CATEGORY PICTURES UNDER THE HERO ---------- */
+/* 4. CATEGORY PICTURES UNDER THE HERO */
 
 const bannerCategories = ["cakes", "pastries", "cookies", "pies", "merchandise"];
 
@@ -151,7 +137,7 @@ bannerCategories.forEach(function (category) {
 byId("banner-strip").innerHTML = bannerHtml;
 
 
-/* ---------- 5. PRODUCTS (CARDS, FILTER, SEARCH, SORT) ---------- */
+/* 5. PRODUCTS (CARDS, FILTER, SEARCH, SORT) */
 
 const productGrid = byId("product-grid");
 const searchBox = byId("search-box");
@@ -309,7 +295,7 @@ byId("banner-strip").addEventListener("click", function (event) {
 showProducts();
 
 
-/* ---------- 6. GALLERY AND BIG PHOTO ---------- */
+/* 6. GALLERY AND BIG PHOTO */
 
 // The gallery uses every product photo plus three photos of the bakery
 const galleryImages = [];
@@ -369,7 +355,7 @@ byId("lightbox").addEventListener("click", function (event) {
 });
 
 
-/* ---------- 7. BASKET ---------- */
+/* 7. BASKET */
 
 // The dark background is shared by the basket and the popup.
 // It shows while one of them is open, and the page behind stops scrolling.
@@ -539,7 +525,7 @@ byId("checkout-button").addEventListener("click", function () {
 });
 
 
-/* ---------- 8. PRODUCT POPUP ---------- */
+/* 8. PRODUCT POPUP */
 
 // Remembers which product the popup is showing
 let popupProductId = null;
@@ -593,7 +579,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 
-/* ---------- 9. STAR RATING AND FEEDBACK ---------- */
+/* 9. STAR RATING AND FEEDBACK */
 
 let chosenRating = 0;
 const starsBox = byId("rating-stars");
@@ -694,7 +680,7 @@ byId("feedback-form").addEventListener("submit", function (event) {
 showFeedback();
 
 
-/* ---------- 10. CONTACT AND NEWSLETTER FORMS (DEMO ONLY) ---------- */
+/* 10. CONTACT AND NEWSLETTER FORMS (DEMO ONLY) */
 
 byId("contact-form").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -717,7 +703,7 @@ byId("newsletter-form").addEventListener("submit", function (event) {
 });
 
 
-/* ---------- 11. MENU (MOBILE TOGGLE AND HIGHLIGHT) ---------- */
+/* 11. MENU (MOBILE TOGGLE AND HIGHLIGHT) */
 
 const menu = byId("menu");
 const menuToggle = byId("menu-toggle");
@@ -772,12 +758,12 @@ window.addEventListener("scroll", highlightMenu);
 highlightMenu();
 
 
-/* ---------- 12. FOOTER YEAR ---------- */
+/* 12. FOOTER YEAR */
 
 byId("current-year").textContent = new Date().getFullYear();
 
 
-/* ---------- START ---------- */
+/* START */
 
 // Draw the basket once when the page loads
 showBasket();
