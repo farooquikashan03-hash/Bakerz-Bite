@@ -1,24 +1,5 @@
-/* =========================================================
-   Bakerz Bite - simple CSS (same look, much easier to read)
- 
-   TABLE OF CONTENTS (search for the number to jump there)
-    1. Colours and page basics
-    2. Layout helpers
-    3. Navigation bar
-    4. Buttons and cards
-    5. Hero (top of the page)
-    6. Products, gallery, offers
-    7. FAQ, forms, reviews
-    8. Basket, popup, big photo
-    9. Footer and ticker
-   10. Tablet and phone sizes
- 
-   TIP: every rule exists ONCE. Change it here and that's it.
-   ========================================================== */
- 
- 
-/* ---------- 1. COLOURS AND PAGE BASICS ---------- */
- 
+/* Bakerz Bite - simple CSS  */
+/*  1. COLOURS AND PAGE BASICS  */
 /* Change a colour here and the whole site updates */
 :root {
     --cream: #FFF8EF;
@@ -107,7 +88,7 @@ a, button, input, textarea, select {
 }
  
  
-/* ---------- 2. LAYOUT HELPERS ---------- */
+/* 2. LAYOUT HELPERS  */
  
 .container {
     width: 100%;
@@ -206,7 +187,7 @@ a, button, input, textarea, select {
 }
  
  
-/* ---------- 3. NAVIGATION BAR ---------- */
+/* 3. NAVIGATION BAR */
  
 .navbar {
     position: sticky;
@@ -331,7 +312,7 @@ a, button, input, textarea, select {
 }
  
  
-/* ---------- 4. BUTTONS AND CARDS ---------- */
+/* 4. BUTTONS AND CARDS */
  
 .button {
     display: inline-block;
@@ -495,7 +476,7 @@ a, button, input, textarea, select {
 }
  
  
-/* ---------- 5. HERO (TOP OF THE PAGE) ---------- */
+/* 5. HERO (TOP OF THE PAGE) */
  
 .hero {
     padding: 54px 0 42px;
@@ -670,7 +651,7 @@ a, button, input, textarea, select {
 }
  
  
-/* ---------- 6. PRODUCTS, GALLERY, OFFERS ---------- */
+/* 6. PRODUCTS, GALLERY, OFFERS */
  
 .title {
     margin-bottom: 16px;
@@ -875,7 +856,7 @@ a, button, input, textarea, select {
 }
  
  
-/* ---------- 7. FAQ, FORMS, REVIEWS ---------- */
+/* 7. FAQ, FORMS, REVIEWS */
  
 /* FAQ boxes */
 .faq-item {
@@ -1039,7 +1020,7 @@ textarea.field {
 }
  
  
-/* ---------- 8. BASKET, POPUP, BIG PHOTO ---------- */
+/* 8. BASKET, POPUP, BIG PHOTO */
  
 /* Dark background behind the basket and popup */
 #overlay {
@@ -1268,7 +1249,7 @@ textarea.field {
 }
  
  
-/* ---------- 9. FOOTER AND TICKER ---------- */
+/* 9. FOOTER AND TICKER */
  
 .footer {
     padding: 40px 0 20px 0;
@@ -1378,7 +1359,7 @@ textarea.field {
 }
  
  
-/* ---------- 10. TABLET AND PHONE SIZES ---------- */
+/* 10. TABLET AND PHONE SIZES */
  
 /* Tablets and smaller: hamburger menu */
 @media (max-width: 991px) {
